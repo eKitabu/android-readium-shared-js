@@ -24,7 +24,8 @@
 //  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 //  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 //  OF THE POSSIBILITY OF SUCH DAMAGE.
-define(["./globals", 'underscore', "jquery", "jquerySizes", "./models/spine_item"], function(Globals, _, $, JQuerySizes, SpineItem) {
+define(["./globals", 'underscore', "jquery", "jquerySizes", "./models/spine_item", "pouchdb"],
+    function(Globals, _, $, JQuerySizes, SpineItem, PouchDB) {
     
 (function()
 {
@@ -73,6 +74,125 @@ define(["./globals", 'underscore', "jquery", "jquerySizes", "./models/spine_item
 
 var Helpers = {};
 
+
+
+Helpers.logEvent = function(context, eventType) {
+    var app_log_db = new PouchDB('app_log_db');
+    var date = new Date();
+    var app_log_entry = {
+        timestamp: date.toISOString(),
+        action: eventType,
+        context: context
+    }
+    app_log_db.post(app_log_entry, null);
+};
+
+Helpers.appPollPoll = function () {
+    console.log('polly wnat a cracker');
+}
+
+Helpers.appClosePoll = function closePoll() {
+    //1 rev limit as  we do not want to store revisions of last poll time 
+    var app_close = new PouchDB('app_close',{revs_limit: 1, auto_compaction: true});
+
+    var date = new Date();
+    var last_poll_time = {
+        _id: "last_poll",
+        timestamp: date.toISOString(),
+    }
+    //put the new latest poll time into db
+    app_close.get(last_poll_time._id).then(function(originalDoc)
+    {
+        //overwrite the last revision
+        last_poll_time._rev = originalDoc._rev;
+        app_close.put(last_poll_time);
+    }).catch(function(err)
+    {
+        app_close.put(last_poll_time);
+        console.log(err);
+    });
+    setTimeout(closePoll,5000);
+}
+
+
+/**
+ * Get the latest App Close Time Poll from the last time the app was used (eg, whatever was last polled
+ * before the app was last closed) and log that as an app close event. Then, start the polling
+ * up again.
+ * 
+ */
+Helpers.appClosePollLogAndBegin = function () {
+    //Open database that contains the polling data (eg, last time the poll fired to mark close event)
+    var app_close = new PouchDB('app_close',{revs_limit: 1, auto_compaction: true});
+
+    //get last poll
+    app_close.get("last_poll").then(function(lastPoll)
+    {
+        //get general logging database
+        var app_log_db = new PouchDB('app_log_db');
+        
+        //create the entry that will log the close event
+        var app_log_entry = {
+            timestamp: lastPoll.timestamp,
+            action: "appClose",
+            context: null,
+        }
+        //post the entry to the database
+        app_log_db.post(app_log_entry, null);
+        setTimeout(Helpers.appClosePoll,5000);
+    }).catch(function(err)
+    {
+        console.log(err);
+        setTimeout(Helpers.appClosePoll,5000);
+    });
+}//Helpers.appClosePollLogAndBegin = function ()
+
+
+//TODO - add categories in log
+Helpers.logBookOpenEvent = function(title /*,categories */) {
+    var context = {
+        "title":title
+    };
+    Helpers.logEvent(context,"bookOpen");
+}
+
+// Helpers.logAudioPlayEvent = function() {
+//     Helpers.logEvent(null,"audioPlay");
+// }
+
+Helpers.logBookCloseEvent = function(title) {
+    var context = {
+        "title":title
+    };
+    Helpers.logEvent(context,"bookClose");
+}
+
+// Helpers.logPlayTtsEvent = function()
+// {
+//     Helpers.logEvent(null,"ttsPlay");
+// }
+// Helpers.logStopTtsEvent = function() {
+//     Helpers.logEvent(null,"ttsStop");
+// }
+
+Helpers.resetLocalDb = function() {
+    console.log('reset local db');
+    var app_log_db = new PouchDB('app_log_db');
+    app_log_db.destroy();
+}
+
+Helpers.logAppOpenEvent = function() {
+    chrome.runtime.getPlatformInfo(function (platformInfo) {
+        console.log(platformInfo);
+        var context = {
+            "os": platformInfo.os,
+            "arch": platformInfo.arch
+        }
+        Helpers.logEvent(context,"appOpen");
+    });
+}
+
+
 /**
  *
  * @param ebookURL URL string, or Blob (possibly File)
@@ -89,6 +209,7 @@ Helpers.getEbookUrlFilePath = function(ebookURL) {
         return ebookURL;
     }
 };
+
 
 /**
  *
