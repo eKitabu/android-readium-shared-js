@@ -65,7 +65,7 @@ define(["./globals", 'underscore', "jquery", "jquerySizes", "./models/spine_item
         };
         return;
     }
-    
+
     window.performance.now = function()
     {
         return +(new Date());
@@ -130,7 +130,7 @@ Helpers.appClosePollLogAndBegin = function () {
     {
         //get general logging database
         var app_log_db = new PouchDB('app_log_db');
-        
+
         //create the entry that will log the close event
         var app_log_entry = {
             timestamp: lastPoll.timestamp,
@@ -151,7 +151,8 @@ Helpers.appClosePollLogAndBegin = function () {
 //TODO - add categories in log
 Helpers.logBookOpenEvent = function(title /*,categories */) {
     var context = {
-        "title":title
+        "title":title,
+        "appVersion" : chrome.runtime.getManifest().version
     };
     Helpers.logEvent(context,"bookOpen");
 }
@@ -162,7 +163,8 @@ Helpers.logBookOpenEvent = function(title /*,categories */) {
 
 Helpers.logBookCloseEvent = function(title) {
     var context = {
-        "title":title
+        "title":title,
+        "appVersion" : chrome.runtime.getManifest().version
     };
     Helpers.logEvent(context,"bookClose");
 }
@@ -186,7 +188,8 @@ Helpers.logAppOpenEvent = function() {
         console.log(platformInfo);
         var context = {
             "os": platformInfo.os,
-            "arch": platformInfo.arch
+            "arch": platformInfo.arch,
+            "appVersion" : chrome.runtime.getManifest().version
         }
         Helpers.logEvent(context,"appOpen");
     });
