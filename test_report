@@ -1,0 +1,81 @@
+Readium Android Build	SPEC	ACTUAL 	VERSION 3.3	STATUS
+Initial encryption of content on desktop machine - Create Package			VERSION 3.3.8	ACCEPTED
+Provisioning - Encyrpt and Copy				ACCEPTED
+Pre-Encrypt 				REJECTED
+Provisioning - copying files onto device				ACCEPTED
+Load 1st book in Thumbnail view				ACCEPTED
+Load all covers in Thumbnail view				ACCEPTED
+Load 1st book in List view				ACCEPTED
+Load all books in List view				ACCEPTED
+Open a book				ACCEPTED
+Page turns				ACCEPTED
+Copy & paste - tap				ACCEPTED
+Copy Paste - in app functionality (tap)				ACCEPTED
+Copy & paste - S PEN				4.x ROADMAP
+Encryption - copy protection				ACCEPTED
+Load all covers in Thumbnail view 2nd time opening app (after caching)				ACCEPTED
+Load all covers in List view 2nd time opening app (after caching)				ACCEPTED
+Display covers in a category (Level, Subject)				ACCEPTED
+FEATURE SET TEST				
+Bookshelf Category View - Grade, Subject				
+Default View on app start = Category view, showing selection of Level				ACCEPTED
+Category view displays: Class 4 - Class 8, Form 1 - Form 4				ACCEPTED
+Label top of Class list as "Level"				ACCEPTED
+When a Level is selected, show available Subjects based on tags present				ACCEPTED
+Subject category view shows all Books in that Subject, Level				ACCEPTED
+Thumbnail View (toggle with List view)				ACCEPTED
+List View (toggle with List view)				ACCEPTED
+Category View (new icon)				4.X ROADMAP
+New Bookshelf icon 				ACCEPTED
+Books can have multiple or no Grade tags				ACCEPTED
+Books can have multiple or no Subject tags				ACCEPTED
+Grades, Subjects are populated automatically				ACCEPTED
+User cannot edit or delete automatically populated tags				ACCEPTED
+Categorization information based on config file for project				ACCEPTED
+Reading Feature/User Interface				
+Book Sorting				ACCEPTED
+Sort Alphabetical by title				ACCEPTED
+Sort by most recently read toggle with sort by alpha				ACCEPTED
+Back button behavior				ACCEPTED
+Tap once more to exit app				ACCEPTED
+Increase size of top menu bar and icons				ACCEPTED
+Increase hot area for page turns				ACCEPTED
+Enable swiping [CONFIRM ROADMAP]				4.x ROADMAP
+Increase hot area to display menu [CONFIRM ROADMAP]				ACCEPTED
+Branding Changes				
+Add Splash Screen - does not interfere with Android Permissions				ACCEPTED
+Logos [Changed / No change needed - confirm by Dec 18]				ACCEPTED
+Text labels				ACCEPTED
+Background Image (Thumbnail, List, Category view)				ACCEPTED
+About text updated				ACCEPTED
+Versions and Releases labeled: eKitabu 3.2.X. About text matches version number				ACCEPTED
+Online/Offline Sync and Usage Reporting				
+Device ID (android serial number), password (pre-generated) authenticate app to server				[depricated]
+Device ID automatically taken from Android Serial number, added to Device Log				ACCEPTED
+Password auto generated from script, added to Device Log				ACCEPTED
+App is logging specified events and synching to server				Not getting data back from device provisioned with new User ID, PW
+[LIST ALL EVENTS] - confirmed same as Chrome				ACCEPTED
+Save offline in CouchDB when offline by sending Mike O'Conner debug build 				ACCEPTED
+Sync to eKitabu server if Internet connection is present on the app opened				ACCEPTED
+Update of New Content Packages				
+Add content : new epubs will be added, existing epubs not removed, if on device replaced with new epub in package				ACCEPTED
+Copy pre-encrypted content packages onto devices				ACCEPTED
+App Update				
+Enable App Update without removing content				App updates without removing content
+Encrypt content separately from device load				
+Option in command line for pre-encryption				COMPLETE - not using, as process is too complex. No apparent performance increase vs. "Encrypt and copy" Revisti after S6
+Accept Device ID (Serial Number) as input from list				ACCEPTED
+Log File				
+Project ID can be set by user [in config]				config.ini ACCEPTED
+Package Name can be set by user [in config]				config.ini , field 6
+IMEI				ACCEPTED
+Time Stamp << time when content is pre-encrypted. DD-MM-YYYY 24:00				[FEATURE REMOVED]
+Time Stamp << time when content is copied to device DD-MM-YYYY 24:00				ACCEPTED
+Device ID (Android Serial Number)				ACCEPTED Android Serial Number captured in Log File 
+EPUB file name				ACCEPTED
+File path				ACCEPTED
+EPUB title from metadata				ACCEPTED
+DC:publisher from EPUB metadata				ACCEPTED
+DC:identifier / ISBN from EPUB metadata				ACCEPTED
+Data is accurate: Log file matches EPUBs copied to device				ACCEPTED Time is coming from Desktop Time (provisioning computer)
+Data is accurate: Log file date is correct				ACCEPTED
