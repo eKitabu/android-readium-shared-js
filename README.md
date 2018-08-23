@@ -1,5 +1,7 @@
 # readium-shared-js
 
+# [![Build Status](https://travis-ci.org/eKitabu/android-readium-shared-js.svg?branch=travis)](https://travis-ci.org/eKitabu/android-readium-shared-js)
+
 **EPUB rendering engine written in HTML, CSS and Javascript.**
 
 This is a software component commonly-shared between the Readium Chrome extension and "cloud reader" ( https://github.com/readium/readium-js-viewer ),
