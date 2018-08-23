@@ -16,8 +16,6 @@ before_script:
 - pwd
 script:
 - git status
-- cd android-readium-shared-js
-- git status
 - cd readium-cfi-js
 - git status
 after_success:
