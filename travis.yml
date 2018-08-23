@@ -1,43 +1,19 @@
 esudo: false
 branches:
   only:
-  - travis
   - brian-develop
 language: node_js
 node_js:
-- '8'
+- '9'
 before_install:
 - git submodule update --init --recursive
 #
-# READIUM JS VIEWER
-#
 
-# READIUM JS
-#
-# - cd readium-js
-#
-
-# READIUM SHARED JS
-#
-# - cd readium-shared-js
-#
-
- - cd readium-cfi-js
-#
-
-- cd ../../../
 install:
 - npm run prepare:all
 before_script:
 - pwd
 script:
-- cd readium-shared-js/readium-cfi-js
-- cd ../../..
-- pwd
-- git status
-- cd readium-js
-- git status
-- cd readium-shared-js
 - git status
 - cd readium-cfi-js
 - git status
