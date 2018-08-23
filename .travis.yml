@@ -9,18 +9,7 @@ node_js:
 before_install:
 - git submodule update --init --recursive
 #
-# READIUM JS VIEWER
 
-
-# READIUM SHARED JS
-#
-- cd android-readium-shared-js
-#
-
-- cd readium-cfi-js
-#
-
-- cd ../../../
 install:
 - npm run prepare:all
 before_script:
