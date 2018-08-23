@@ -2,7 +2,7 @@ esudo: false
 branches:
   only:
   - travis
-  - develop
+  - brian-develop
 language: node_js
 node_js:
 - '8'
