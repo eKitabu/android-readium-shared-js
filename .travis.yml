@@ -10,12 +10,7 @@ before_install:
 - git submodule update --init --recursive
 #
 # READIUM JS VIEWER
-#
 
-# READIUM JS
-#
-- cd readium-js
-#
 
 # READIUM SHARED JS
 #
