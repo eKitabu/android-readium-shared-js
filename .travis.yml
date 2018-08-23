@@ -19,7 +19,7 @@ before_install:
 
 # READIUM SHARED JS
 #
-- cd readium-shared-js
+- cd android-readium-shared-js
 #
 
 - cd readium-cfi-js
