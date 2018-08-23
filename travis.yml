@@ -14,15 +14,15 @@ before_install:
 
 # READIUM JS
 #
-- cd readium-js
+# - cd readium-js
 #
 
 # READIUM SHARED JS
 #
-- cd readium-shared-js
+# - cd readium-shared-js
 #
 
-- cd readium-cfi-js
+# - cd readium-cfi-js
 #
 
 - cd ../../../
