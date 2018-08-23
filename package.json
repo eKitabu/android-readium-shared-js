@@ -46,9 +46,9 @@
   ],
   "dependencies": {
     "concurrently": "latest",
+    "http-server": "github:danielweck/http-server",
     "npm-run-all": "latest",
-    "opener": "latest",
-    "http-server": "github:danielweck/http-server"
+    "opener": "latest"
   },
   "devDependencies": {
     "jquery-sizes": "github:bramstein/jsizes",
