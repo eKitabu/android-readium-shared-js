@@ -1,5 +1,7 @@
 # readium-shared-js
 
+# [![Coverage Status](https://coveralls.io/repos/github/eKitabu/android-readium-shared-js/badge.svg?branch=ekitabu-develop)](https://coveralls.io/github/eKitabu/android-readium-shared-js?branch=ekitabu-develop)
+
 # [![Build Status](https://travis-ci.org/eKitabu/android-readium-shared-js.svg?branch=travis)](https://travis-ci.org/eKitabu/android-readium-shared-js)
 
 **EPUB rendering engine written in HTML, CSS and Javascript.**
