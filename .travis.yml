@@ -11,12 +11,13 @@ before_install:
 #
 
 install:
-
+npm install -g codecov
 before_script:
 - pwd
 script:
 - git status
 - cd readium-cfi-js
+- istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && codecov
 - git status
 after_success:
 - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ ${MODE} = "firefox" ] && npm install surge && echo "epub_content" > ./dist/cloud-reader/.surgeignore && surge --project ./dist/cloud-reader --domain readium.surge.sh'
@@ -25,6 +26,7 @@ after_success:
 - npm run coverage
 after_failure: cat ./sauce_connect.log
 env:
+- CODECOV_TOKEN="aef95031-408a-4293-bb25-97ebdc90b35c"
   global:
   - SAUCE_USERNAME=readium
   - SAUCE_ACCESS_KEY=a36ebc10-e514-4da6-924c-307aec513550

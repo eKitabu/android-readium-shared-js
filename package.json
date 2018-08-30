@@ -45,6 +45,7 @@
     "README.md"
   ],
   "dependencies": {
+    "codecov.io": "^0.1.6",
     "concurrently": "latest",
     "http-server": "github:danielweck/http-server",
     "npm-run-all": "latest",
@@ -63,7 +64,7 @@
     "urijs": "github:danielweck/URI.js"
   },
   "scripts": {
-    "test": "nyc mocha",
+    "test": "nyc --reporter=html --reporter=text mocha",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "cson2json": "node ./readium-cfi-js/node_modules/cson/bin/cson2json package.cson > package.json && node readium-cfi-js/readium-build-tools/optimizePackageJsonScripts.js",
     "prepare:all": "npm run prepare:submodule && npm run prepare:local",
