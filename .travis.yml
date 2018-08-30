@@ -11,7 +11,6 @@ before_install:
 #
 
 install:
-- npm install istanbull
 - npm install -g codecov
 before_script:
 - pwd
@@ -24,7 +23,7 @@ after_success:
 - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ ${MODE} = "firefox" ] && npm install surge && echo "epub_content" > ./dist/cloud-reader/.surgeignore && surge --project ./dist/cloud-reader --domain readium.surge.sh'
 - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ ${MODE} = "firefox" ] && npm install firebase-tools && firebase deploy --non-interactive --token "$FIREBASE_TOKEN" --project "project-1351855251145549090"'
 - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ ${MODE} = "chromeApp" ] && node build-config/deployCrx.js'
-- npm run coverage
+- npm test
 after_failure: cat ./sauce_connect.log
 env:
   global:
