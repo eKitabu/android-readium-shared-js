@@ -11,6 +11,7 @@ before_install:
 #
 
 install:
+- npm install istanbull
 - npm install -g codecov
 before_script:
 - pwd
