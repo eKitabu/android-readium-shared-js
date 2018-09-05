@@ -13,7 +13,7 @@ before_install:
 install:
 #- npm install -g codecov
 before_script:
-- pwd
+- cd readium-cfi-js
 script:
 - git status
 - cd readium-cfi-js

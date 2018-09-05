@@ -64,8 +64,8 @@
     "urijs": "github:danielweck/URI.js"
   },
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "test": "nyc mocha",
+     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "cson2json": "node ./readium-cfi-js/node_modules/cson/bin/cson2json package.cson > package.json && node readium-cfi-js/readium-build-tools/optimizePackageJsonScripts.js",
     "prepare:all": "npm run prepare:submodule && npm run prepare:local",
     "prepare:local": "(npm outdated || echo outdated) && npm install --no-save --only=prod && npm install --no-save --only=dev && npm update --no-save && npm run prepare:local:common",
